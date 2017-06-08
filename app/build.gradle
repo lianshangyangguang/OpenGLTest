@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin:'im.fir.plugin.gradle'// 必填
+apply plugin: 'im.fir.plugin.gradle'
 
 android {
     compileSdkVersion 25
