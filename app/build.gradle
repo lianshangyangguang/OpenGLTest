@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin:'im.fir.plugin.gradle'// 必填
 
 android {
     compileSdkVersion 25
@@ -20,6 +21,13 @@ android {
         }
     }
 
+    fir{
+
+        //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
+        apiToken'8f68d31a204da27bfcc3747fa11dcbb6'
+
+    }
+
     //忽略警告信息
     lintOptions {
         checkReleaseBuilds false
@@ -28,11 +36,16 @@ android {
 
     buildTypes {
         debuge {
+            zipAlignEnabled true
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
+
+            //对齐优化设置为true，否则找不到该task (默认不写也是true)
+            zipAlignEnabled true
             minifyEnabled false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -52,6 +65,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.2.0'
 }
