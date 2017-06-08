@@ -10,6 +10,6 @@ android:
 before_install:
  - chmod +x gradlew
 
-script:
-    - "./gradlew publishApkRelease"
+#script:
+#    - "./gradlew publishApkRelease"
 
